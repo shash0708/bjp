@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const EventSchema = require('./models/event');
 const Student = require('./models/Student');
 const calculateAndCheckDistance = require('./utils/distance'); // Adjust the path as per your file structure
-const Link = require('./models/Link');
+const Link = require('./models/')
 dotenv.config();
 
 app.use(express.json());

@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const EventSchema = require('./models/event');
 const Student = require('./models/Student');
 const calculateAndCheckDistance = require('./utils/distance'); // Adjust the path as per your file structure
-const Link = require('./models/Link');
+
 dotenv.config();
 
 app.use(express.json());
@@ -112,7 +112,7 @@ app.post('/generate-link', async (req, res) => {
             url: fullUrl,
         });
         await newLink.save();
-        console.log(fullUrl);
+        console.log()
         res.status(201).json({ link: fullUrl });
     } catch (error) {
         console.error('Error generating link:', error);
