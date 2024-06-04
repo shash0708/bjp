@@ -6,7 +6,6 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const EventSchema = require('./models/event');
 const Student = require('./models/Student');
-const calculateAndCheckDistance = require('./utils/distance'); // Adjust the path as per your file structure
 
 dotenv.config();
 
@@ -149,7 +148,7 @@ app.post('/student-form', async (req, res) => {
         throw error;
       }
       // Log or use the distance if needed
-    //    console.log(`Calculated distance: ${isWithinRadius} meters`);    // Create a new event object using the extracted data
+      // console.log(`Calculated distance: ${distance} meters`);    // Create a new event object using the extracted data
       const student = new Student({
         eventName,RegdNo,contactNo,Branch,year,email,userLocation  })
       console.log("sdfg")
