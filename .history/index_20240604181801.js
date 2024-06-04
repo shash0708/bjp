@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(cors(
   {
-    origin : "https://attendence-49cr.vercel.app",
+    origin : ["https://attendence-49cr.vercel.app","https://bjp-suru.onrender.com/generate-link"],
     methods : ["GET","POST","PUT","DELETE"],
     credentials : true
   }
@@ -104,7 +104,7 @@ app.post('/generate-link', async (req, res) => {
             return res.status(404).json({ error: 'Event not found' });
         }
 
-        const baseUrl = 'https://attendence-49cr.vercel.app/';
+        const baseUrl = 'http://localhost:3000/ooes';
         const eventNameSlug = encodeURIComponent(event.eventName.replace(/\s+/g, '-').toLowerCase());
         const fullUrl = `${baseUrl}${eventNameSlug}/student-form`;
 
