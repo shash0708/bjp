@@ -65,7 +65,6 @@ app.post('/update', async (req, res) => {
       console.log(savedNote)
 
       res.json(savedNote);
-      res.status(200).json({"msg":"Updated Successfully"});
         } catch (error) {
       // Handle errors
       console.error(error);

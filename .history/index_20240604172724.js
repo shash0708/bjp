@@ -40,6 +40,7 @@ con.once("open", () => {
 
 
 
+
 app.get("/", (req, res) => {
   res.send("Express on Vercel");
 });
@@ -62,11 +63,10 @@ app.post('/update', async (req, res) => {
       })
       // Save the event to the database
       const savedNote = await event.save();
-      console.log(savedNote)
+      res.status(200).res.json(savedNote);
+        json({ message: 'Update successful' });
 
-      res.json(savedNote);
-      res.status(200).json({"msg":"Updated Successfully"});
-        } catch (error) {
+    } catch (error) {
       // Handle errors
       console.error(error);
       res.status(500).send('Internal Server Error');
