@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(cors(
   {
-    origin : ["https://attendence-49cr.vercel.app","https://bjp-suru.onrender.com/generate-link"],
+    origin : "https://attendence-49cr.vercel.app","https://bjp-suru.onrender.com/generate-link/",
     methods : ["GET","POST","PUT","DELETE"],
     credentials : true
   }
