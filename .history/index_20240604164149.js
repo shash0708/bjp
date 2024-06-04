@@ -5,8 +5,6 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const EventSchema = require('./models/event');
-const Student = require('./models/Student');
-
 dotenv.config();
 
 app.use(express.json());
@@ -122,68 +120,7 @@ app.post('/generate-link', async (req, res) => {
 });
 
 
-app.post('/student-form', async (req, res) => {
-    try {
-      // Extract event data from the request body
-      const { eventName,RegdNo,contactNo,year,Branch,email,userLocation} = req.body;
-      const eventN = await EventSchema.findOne({ eventName });
-      const Regd = await EventSchema.findOne({ RegdNo });
-  
-  
-     if (Regd) {
-        return res.status(404).json({ error: ' User Already exist' });
-      }
-  
-      if (!eventN) {
-        return res.status(404).json({ error: 'Event not found' });
-      }
-      console.log('Received form data:', req.body);
-  
-    //   try {
-    //     const isWithinRadius = await calculateAndCheckDistance(eventN.adminLocation, userLocation, eventN.maxRadius);
-    //   } catch (error) {
-    //     if (error.message === 'Distance exceeds maximum radius') {
-    //       return res.status(400).json({ error: 'User location is outside the allowed radius' });
-    //     }
-    //     throw error;
-    //   }
-      // Log or use the distance if needed
-      // console.log(`Calculated distance: ${distance} meters`);    // Create a new event object using the extracted data
-      const student = new Student({
-        eventName,RegdNo,contactNo,Branch,year,email,userLocation  })
-      console.log("sdfg")
-  
-    
-      // Save the event to the database
-  
-      
-      const savedaStudent = await student.save();
-      res.json(savedaStudent);
-    } catch (error) {
-      // Handle errors
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    }
-  });
-    
-  app.get('/fetchStudentData', async (req, res) => {
-    try {
-      const eventName = req.query.eventName; // Extract eventName from query parameters
-      console.log(eventName);
-  
-      // Find events with matching eventName
-      const events = await Student.find({ eventName: eventName });
-  
-      if (events.length === 0) {
-        return res.status(404).json({ message: 'No events found with the provided eventName' });
-      }
-  
-      res.json(events);
-    } catch (error) {
-      console.log("Error in Fetching the events:", error);
-      res.status(500).send("Internal Server Error");
-    }
-  });
+
 
 app.listen(5000, () => {
   console.log("Running on port 5000.");

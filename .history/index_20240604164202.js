@@ -5,8 +5,6 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const EventSchema = require('./models/event');
-const Student = require('./models/Student');
-
 dotenv.config();
 
 app.use(express.json());
@@ -139,14 +137,14 @@ app.post('/student-form', async (req, res) => {
       }
       console.log('Received form data:', req.body);
   
-    //   try {
-    //     const isWithinRadius = await calculateAndCheckDistance(eventN.adminLocation, userLocation, eventN.maxRadius);
-    //   } catch (error) {
-    //     if (error.message === 'Distance exceeds maximum radius') {
-    //       return res.status(400).json({ error: 'User location is outside the allowed radius' });
-    //     }
-    //     throw error;
-    //   }
+      try {
+        const isWithinRadius = await calculateAndCheckDistance(eventN.adminLocation, userLocation, eventN.maxRadius);
+      } catch (error) {
+        if (error.message === 'Distance exceeds maximum radius') {
+          return res.status(400).json({ error: 'User location is outside the allowed radius' });
+        }
+        throw error;
+      }
       // Log or use the distance if needed
       // console.log(`Calculated distance: ${distance} meters`);    // Create a new event object using the extracted data
       const student = new Student({
