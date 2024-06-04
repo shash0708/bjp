@@ -91,35 +91,6 @@ app.post('/update', async (req, res) => {
   }
 });
 
-
- 
-app.post('/generate-link', async (req, res) => {
-    const { eventName } = req.body; // Expecting event ID to be sent in the request
-    try {
-      const event = await EventSchema.findOne({ eventName: eventName });
-
-        if (!event) {
-            return res.status(404).json({ error: 'Event not found' });
-        }
-
-        const baseUrl = 'https://attendence-49cr.vercel.app/';
-        const eventNameSlug = encodeURIComponent(event.eventName.replace(/\s+/g, '-').toLowerCase());
-        const fullUrl = `${baseUrl}${eventNameSlug}/student-form`;
-
-        const newLink = new Link({
-            eventNameSlug,
-            url: fullUrl,
-        });
-        await newLink.save();
-
-        res.status(201).json({ link: fullUrl });
-    } catch (error) {
-        console.error('Error generating link:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
-
 app.listen(5000, () => {
   console.log("Running on port 5000.");
 });
