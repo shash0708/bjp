@@ -5,6 +5,9 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
 const EventSchema = require('./models/event');
+const Link = require('./models/Link')
+const crypto = require('crypto');
+const Student = require('./models/Student');
 dotenv.config();
 
 app.use(express.json());
@@ -78,7 +81,7 @@ app.post('/update', async (req, res) => {
     console.log(eventName);
 
     // Find events with matching eventName
-    const events = await EventSchema.find({ eventName: eventName });
+    const events = await .find({ eventName: eventName });
 
     if (events.length === 0) {
       return res.status(404).json({ message: 'No events found with the provided eventName' });

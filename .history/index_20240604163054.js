@@ -4,7 +4,6 @@ const app = express();
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const mongoose = require('mongoose')
-const EventSchema = require('./models/event');
 dotenv.config();
 
 app.use(express.json());
