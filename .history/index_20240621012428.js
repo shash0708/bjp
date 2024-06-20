@@ -58,7 +58,7 @@ app.post('/update', async (req, res) => {
 
   const lowercaseEventName = eventName.toLowerCase();
 
-
+c
   const event = new EventSchema({
     eventName: lowercaseEventName // Use lowercaseEventName here
     ,contactNo,strength,year,organization,department,maxRadius,adminLocation
@@ -127,7 +127,7 @@ app.post('/student-form', async (req, res) => {
   try {
     // Extract event data from the request body
     const { eventName, RegdNo, contactNo, year, Branch, email, userLocation } = req.body;
-    console.log(userLocation);
+    
     // Check if event exists
     const eventN = await EventSchema.findOne({ eventName });
     if (!eventN) {

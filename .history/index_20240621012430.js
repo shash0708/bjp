@@ -127,7 +127,7 @@ app.post('/student-form', async (req, res) => {
   try {
     // Extract event data from the request body
     const { eventName, RegdNo, contactNo, year, Branch, email, userLocation } = req.body;
-    console.log(userLocation);
+    
     // Check if event exists
     const eventN = await EventSchema.findOne({ eventName });
     if (!eventN) {
