@@ -15,8 +15,11 @@
     "axios": "^1.7.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.4.1"
+    "geolib": "^3.3.4",
+    "mongoose": "^8.4.1",
+    "multer": "^1.4.5-lts.1"
   }
 }
