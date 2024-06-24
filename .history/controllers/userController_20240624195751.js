@@ -20,7 +20,7 @@ const importUser = async(req,res)=>{
                 });
             }
         await User.insertMany(userData);
-        console.log(response);
+        console.log(respone);
          })
         res.send({status:200,success:true,msg:'CSV Imported'});
         

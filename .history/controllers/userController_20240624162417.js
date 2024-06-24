@@ -1,4 +1,4 @@
-var User =require('../models/User');
+var User =require('../models/Excel');
 
 var csv = require('csvtojson')
 
@@ -15,12 +15,10 @@ const importUser = async(req,res)=>{
 
             for(var x =0;x <response.length;x++){
                 userData.push({
-                    RegdNo :response[x].RegdNo,
-                    number:response[x].number
+                    regdno:response[x].regdno
                 });
             }
         await User.insertMany(userData);
-        console.log(response);
          })
         res.send({status:200,success:true,msg:'CSV Imported'});
         

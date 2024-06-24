@@ -15,12 +15,11 @@ const importUser = async(req,res)=>{
 
             for(var x =0;x <response.length;x++){
                 userData.push({
-                    RegdNo :response[x].RegdNo,
+                    name:response[x].regdno,
                     number:response[x].number
                 });
             }
         await User.insertMany(userData);
-        console.log(response);
          })
         res.send({status:200,success:true,msg:'CSV Imported'});
         

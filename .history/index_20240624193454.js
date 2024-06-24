@@ -19,12 +19,12 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors());
-// {
-//   origin: "https://attendence-49cr.vercel.app",
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   credentials: true
-// }
+app.use(cors({
+  origin: "https://attendence-49cr.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const uri = "mongodb+srv://shashankpeddinti07:NO13p1MWQqgcsIWc@cluster0.ssab6nz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -54,8 +54,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 const userController = require('./controllers/userController');
 
-app.post('/upload', upload.single('file'), userController.importUser
-);
+app.post('/upload', upload.single('file'), userController.importUser);
 
 app.post('/update', async (req, res) => {
   try {
@@ -131,17 +130,17 @@ app.post('/student-form', async (req, res) => {
   try {
     const { eventName, RegdNo, contactNo, year, Branch, email, userLocation } = req.body;
     console.log(userLocation);
+
     const eventN = await EventSchema.findOne({ eventName });
     if (!eventN) {
       return res.status(404).json({ error: 'Event not found' });
     }
 
-
-    const Regdno = await User.findOne({ RegdNo:RegdNo });
+    const Regdno = await User.findOne({ regdno: regdno });
     console.error("User not found with RegdNo: (out)", Regdno);
     if (!Regdno) {
-      console.error("User not found with RegdNo:", Regdno);
-      return res.status(404).json({ error: 'Error! Please Contact Co-ordinator' });
+      console.error("User not found with RegdNo:", regdno);
+      return res.status(400).json({ error: 'Error! Please Contact Co-ordinator' });
     }
 
     const Regd = await Student.findOne({ RegdNo });

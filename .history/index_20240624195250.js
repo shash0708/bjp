@@ -19,12 +19,12 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors());
-// {
-//   origin: "https://attendence-49cr.vercel.app",
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   credentials: true
-// }
+app.use(cors({
+  origin: "https://attendence-49cr.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const uri = "mongodb+srv://shashankpeddinti07:NO13p1MWQqgcsIWc@cluster0.ssab6nz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -131,13 +131,15 @@ app.post('/student-form', async (req, res) => {
   try {
     const { eventName, RegdNo, contactNo, year, Branch, email, userLocation } = req.body;
     console.log(userLocation);
+    console.log(RegdNo);
+
     const eventN = await EventSchema.findOne({ eventName });
     if (!eventN) {
       return res.status(404).json({ error: 'Event not found' });
     }
 
 
-    const Regdno = await User.findOne({ RegdNo:RegdNo });
+    const Regdno = await User.findOne({ RegdNo });
     console.error("User not found with RegdNo: (out)", Regdno);
     if (!Regdno) {
       console.error("User not found with RegdNo:", Regdno);
@@ -145,6 +147,7 @@ app.post('/student-form', async (req, res) => {
     }
 
     const Regd = await Student.findOne({ RegdNo });
+    console.log(Regd);
     if (Regd) {
       return res.status(400).json({ error: 'User Already exists' });
     }

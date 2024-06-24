@@ -19,12 +19,12 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use(cors());
-// {
+// app.use(cors({
 //   origin: "https://attendence-49cr.vercel.app",
 //   methods: ["GET", "POST", "PUT", "DELETE"],
 //   credentials: true
-// }
+// }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const uri = "mongodb+srv://shashankpeddinti07:NO13p1MWQqgcsIWc@cluster0.ssab6nz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
